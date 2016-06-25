@@ -32,9 +32,10 @@ function plusMinus($arr)
     $pos = $neg = $zero = 0;
 
     for ($i = 0; $i < $len; $i++) {
-        $arr[$i] < 0 ? $neg++ :
-            $arr[$i] > 0 ? $pos++ : $zero++;
+        ($arr[$i] < 0) ? $neg++ :
+            ($arr[$i] > 0 ? $pos++ : $zero++);
     }
+
     return array($pos/$len, $neg/$len, $zero/$len);
 
 }
@@ -42,4 +43,8 @@ function plusMinus($arr)
 $handle = fopen("php://stdin","r");
 $N = fgets($handle);
 $nums = explode(" ", fgets($handle));
-print();
+$ret = plusMinus($nums);
+for ($i = 0; $i < 3; $i++) {
+    print("$ret[$i]\n");
+}
+fclose($handle);
