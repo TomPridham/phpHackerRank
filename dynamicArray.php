@@ -43,15 +43,15 @@ Sample Output
 
 function arrayFunc(&$arr, $query, &$lastAns)
 {
+    //adds to array
     if ($query[0] == 1) {
+        //have to cast values to ints to get them to behave as expected
         $arr[(((int)$query[1] ^ (int)$lastAns) % count($arr))][] = $query[2];
-    } else {
-//        print((int)$query[1] ^ (int)$lastAns ."\n");
+    }
+    //finds vals in specified sequence and echos
+    else {
         $seq = $arr[(((int)$query[1] ^ (int)$lastAns) % count($arr))];
-//        print_r($lastAns);
         $lastAns = $seq[($query[2] % count($seq))];
-//        print_r($seq);
-//        print_r($seq[($query[2] % count($seq))]);
         echo($lastAns."\n");
     }
 };
@@ -70,8 +70,8 @@ for ($i = 0; $i < $N; $i++) {
     $arr[$i] = [];
 }
 
+//run queries
 for ($i = 0; $i < $Q; $i++) {
     arrayFunc($arr, explode(" ", trim(fgets($handle))), $lastAns);
 }
-//print_r($arr);
 fclose($handle);
